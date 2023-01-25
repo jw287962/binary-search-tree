@@ -17,7 +17,7 @@ console.log("NEW TREE INSERT");
 treeNode.prettyPrint(treeNode.getTree());
 
 treeNode.deleteNode(123);
-treeNode.deleteNode();
+treeNode.deleteNode(1);
 treeNode.deleteNode(9);
 
 console.log("NEW TREE DELETe");
@@ -25,7 +25,7 @@ console.log("NEW TREE DELETe");
 treeNode.prettyPrint(treeNode.getTree());
 
 
-treeNode.deleteNode(8);
+// treeNode.deleteNode(8);
 
 console.log("NEW TREE");
 

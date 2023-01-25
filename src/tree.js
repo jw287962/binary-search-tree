@@ -34,23 +34,25 @@ const tree = (array) => {
   const insertNode = (value,currentNode = root) =>{
     if (!value) return ;
     const newNode = node();
-
-    let pointerNode = currentNode;
     newNode.data = value;
-
-
-  if(value < pointerNode.data && pointerNode.left == null)
-      return pointerNode.left = newNode;
-  if (value > pointerNode.data && pointerNode.right == null)
-      return pointerNode.right = newNode;
+    let pointerNode = currentNode;
+    if(pointerNode == null){
+      return newNode;
+    }
+  // if(value < pointerNode.data && pointerNode.left == null)
+  //     return pointerNode.left = newNode;
+  // if (value > pointerNode.data && pointerNode.right == null)
+  //     return pointerNode.right = newNode;
 
   if(pointerNode.data == value) return newNode;
  
   else if(value < pointerNode.data){
-    insertNode(value,pointerNode.left)
+    pointerNode.left = insertNode(value,pointerNode.left)
   }
   else 
-    insertNode(value,pointerNode.right);
+  pointerNode.right =  insertNode(value,pointerNode.right);
+
+   return pointerNode;
   }
   function deleteWithTwoChild(currentNode){
     let nextNode = currentNode.right 
@@ -65,11 +67,10 @@ const tree = (array) => {
     return nextNode.data;
   }
 
-  const deleteNode = (value) =>{
+  const deleteNode = (value,currentNode = root) =>{
     if (!value) return ;
     const newNode = node();
-    let currentNode = root;
-  while(currentNode.data != null){
+
     if(currentNode.left == null && currentNode.right == null) return; 
     // 2 children;
     if(currentNode.data == value){
@@ -80,7 +81,6 @@ const tree = (array) => {
         }
       }
     }
-
     // REMOvES NODE IF NEEDED
     if(currentNode.left != null){  
       let deleteNode = currentNode.left;  
@@ -96,40 +96,20 @@ const tree = (array) => {
         return;
       }
   }
-  else if(currentNode.right != null){
-    let deleteNode = currentNode.right;
-      if(deleteNode.data == value){
-        if(deleteNode.left == null && deleteNode.right == null) //check for no children
-        currentNode.right = null;
-        else if(deleteNode.left == null || deleteNode.right == null){
-          if(deleteNode.left != null){
-          currentNode.right = deleteNode.left;
-          return;
-          }
-          currentNode.right = deleteNode.right;
-          return;
-        }
+      if(currentNode.data == value){
        
-          return;
+          return newNode;
       }
-  }
   //  cotinues through tree if less than or greater than
-    if(value < currentNode.data){
-      if(currentNode.left == null)
-        return;
-    else
-      currentNode = currentNode.left;
-    }
-    else if(value > currentNode.data ){
-      if(currentNode.right == null)
-      return 
-      else
-      currentNode = currentNode.right;
-    }
-  }
+    if(value < currentNode.data)
+      deleteNode(value,currentNode.left);
+     if(value > currentNode.data )
+      deleteNode(value,currentNode.right);
+    
 
-  }
 
+    return currentNode;
+  }
 return {getTree,prettyPrint, insertNode,deleteNode}
 }
 
