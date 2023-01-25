@@ -31,28 +31,26 @@ const tree = (array) => {
     }
   }
 
-  const insertNode = (value) =>{
+  const insertNode = (value,currentNode = root) =>{
     if (!value) return ;
     const newNode = node();
 
-    let currentNode = root;
+    let pointerNode = currentNode;
     newNode.data = value;
-  while(currentNode.data != null){
-    if(currentNode.data == value) return null;
-    if(value < currentNode.data){
-      if(currentNode.left == null)
-        return currentNode.left = newNode;
-    else
-      currentNode = currentNode.left;
-    }
-    
-    else if(value > currentNode.data ){
-      if(currentNode.right == null)
-      return currentNode.right = newNode;
-      else
-      currentNode = currentNode.right;
-    }
+
+
+  if(value < pointerNode.data && pointerNode.left == null)
+      return pointerNode.left = newNode;
+  if (value > pointerNode.data && pointerNode.right == null)
+      return pointerNode.right = newNode;
+
+  if(pointerNode.data == value) return newNode;
+ 
+  else if(value < pointerNode.data){
+    insertNode(value,pointerNode.left)
   }
+  else 
+    insertNode(value,pointerNode.right);
   }
   function deleteWithTwoChild(currentNode){
     let nextNode = currentNode.right 
@@ -115,7 +113,7 @@ const tree = (array) => {
           return;
       }
   }
-  //  cotinues through node if less than or greater than
+  //  cotinues through tree if less than or greater than
     if(value < currentNode.data){
       if(currentNode.left == null)
         return;

@@ -12,7 +12,7 @@ treeNode.insertNode(0);
 treeNode.insertNode(6);
 treeNode.insertNode(14);
 
-console.log("NEW TREE");
+console.log("NEW TREE INSERT");
 
 treeNode.prettyPrint(treeNode.getTree());
 
@@ -20,7 +20,7 @@ treeNode.deleteNode(123);
 treeNode.deleteNode();
 treeNode.deleteNode(9);
 
-console.log("NEW TREE");
+console.log("NEW TREE DELETe");
 
 treeNode.prettyPrint(treeNode.getTree());
 
