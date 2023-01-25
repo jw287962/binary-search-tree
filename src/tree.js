@@ -60,13 +60,9 @@ const tree = (array) => {
     while(nextNode.left != null){
       previousNode = nextNode;
       nextNode = nextNode.left;
-      console.log(nextNode);
-
     }
     previousNode.left = null;
-    if(nextNode.left != null)
-    previousNode.left = nextNode.left;
-    else if(nextNode.right != null)
+    if(nextNode.right != null)
     previousNode.left = nextNode.right;
     return nextNode.data;
   }
@@ -75,21 +71,19 @@ const tree = (array) => {
     if (!value) return ;
     const newNode = node();
     let currentNode = root;
-
   while(currentNode.data != null){
     if(currentNode.left == null && currentNode.right == null) return; 
-
     // 2 children;
     if(currentNode.data == value){
-      console.log(currentNode);
- 
-    if (currentNode.left != null || currentNode.right != null){ {  
-      currentNode.data = deleteWithTwoChild(currentNode);
-      
-      return;
+      if (currentNode.left != null || currentNode.right != null){ {  
+        currentNode.data = deleteWithTwoChild(currentNode);
+        
+        return;
+        }
+      }
     }
-  }
-}
+
+    // REMOvES NODE IF NEEDED
     if(currentNode.left != null){  
       let deleteNode = currentNode.left;  
       if(deleteNode.data == value){
@@ -101,7 +95,6 @@ const tree = (array) => {
           }
           return currentNode.left = deleteNode.right;
         }
-        
         return;
       }
   }
@@ -122,9 +115,7 @@ const tree = (array) => {
           return;
       }
   }
-   
-
-
+  //  cotinues through node if less than or greater than
     if(value < currentNode.data){
       if(currentNode.left == null)
         return;
@@ -137,8 +128,6 @@ const tree = (array) => {
       else
       currentNode = currentNode.right;
     }
-
-   
   }
 
   }
