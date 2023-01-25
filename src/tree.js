@@ -70,44 +70,34 @@ const tree = (array) => {
   const deleteNode = (value,currentNode = root) =>{
     if (!value) return ;
     const newNode = node();
-
-    if(currentNode.left == null && currentNode.right == null) return; 
-    // 2 children;
-    if(currentNode.data == value){
-      if (currentNode.left != null || currentNode.right != null){ {  
-        currentNode.data = deleteWithTwoChild(currentNode);
-        
-        return;
+    if(currentNode == null){
+      return null;
+    }
+      if(currentNode.data == value){
+        if(currentNode.left == null && currentNode.right == null ){
+          return null;
         }
+           else if(currentNode.left == null || currentNode.right == null){  //one child
+              if(currentNode.left !=  null){
+                newNode.data = currentNode.left.data;
+                newNode.left = currentNode.left.left;
+                newNode.right = currentNode.left.right;
+              }
+              else if(currentNode.right !=  null) {
+                newNode.data = currentNode.right.data;
+                newNode.left = currentNode.right.left;
+                newNode.right = currentNode.right.right;
+              }
+              return newNode;
+      }else{  //two child
+        currentNode.data =  deleteWithTwoChild(currentNode);
       }
     }
-    // REMOvES NODE IF NEEDED
-    if(currentNode.left != null){  
-      let deleteNode = currentNode.left;  
-      if(deleteNode.data == value){
-        if(deleteNode.left == null && deleteNode.right == null)  //check for no children
-        currentNode.left = null;
-        else { // check for 1 child
-          if(deleteNode.left != null){
-          return currentNode.left = deleteNode.left;
-          }
-          return currentNode.left = deleteNode.right;
-        }
-        return;
-      }
-  }
-      if(currentNode.data == value){
-       
-          return newNode;
-      }
-  //  cotinues through tree if less than or greater than
     if(value < currentNode.data)
-      deleteNode(value,currentNode.left);
+      currentNode.left =  deleteNode(value,currentNode.left);
      if(value > currentNode.data )
-      deleteNode(value,currentNode.right);
+     currentNode.right =  deleteNode(value,currentNode.right);
     
-
-
     return currentNode;
   }
 return {getTree,prettyPrint, insertNode,deleteNode}

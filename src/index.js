@@ -25,7 +25,7 @@ console.log("NEW TREE DELETe");
 treeNode.prettyPrint(treeNode.getTree());
 
 
-// treeNode.deleteNode(8);
+treeNode.deleteNode(8);
 
 console.log("NEW TREE");
 
