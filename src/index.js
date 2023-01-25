@@ -8,24 +8,23 @@ treeNode.prettyPrint(treeNode.getTree());
 
 treeNode.insertNode(10);
 treeNode.insertNode(10);
-treeNode.insertNode(0);
 treeNode.insertNode(6);
 treeNode.insertNode(14);
+treeNode.insertNode(0);
 
 console.log("NEW TREE INSERT");
 
 treeNode.prettyPrint(treeNode.getTree());
 
 treeNode.deleteNode(123);
-treeNode.deleteNode(1);
-treeNode.deleteNode(9);
+// treeNode.deleteNode(9);
 
 console.log("NEW TREE DELETe");
 
 treeNode.prettyPrint(treeNode.getTree());
 
 
-treeNode.deleteNode(8);
+treeNode.deleteNode();
 
 console.log("NEW TREE");
 

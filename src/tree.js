@@ -32,10 +32,11 @@ const tree = (array) => {
   }
 
   const insertNode = (value,currentNode = root) =>{
-    if (!value) return ;
+    if (!value && value != 0) return ;
     const newNode = node();
     newNode.data = value;
     let pointerNode = currentNode;
+
     if(pointerNode == null){
       return newNode;
     }
@@ -54,6 +55,7 @@ const tree = (array) => {
 
    return pointerNode;
   }
+
   function deleteWithTwoChild(currentNode){
     let nextNode = currentNode.right 
     let previousNode;
