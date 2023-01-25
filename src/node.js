@@ -2,8 +2,8 @@
 
 const node = () => {
   let data = null;
-  let left;
-  let right; 
+  let left = null;
+  let right = null; 
 
   return {data,left,right};
 }
