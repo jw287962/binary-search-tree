@@ -1,9 +1,8 @@
-import node from './node';
-import fixedArray from './mergeSort';
+const  node = require('./node');
+const fixedArray = require('./mergeSort');
 
 
 const tree = (array) => {
- ;
   let root = buildTree(fixedArray(array));
 
   function buildTree(array){
@@ -116,6 +115,14 @@ const tree = (array) => {
   //     }
   // return orderArray.concat(levelOrder(queueArray));
   // }
+  
+
+ /*
+ * @param: tree - Node
+ * @param: callback (optional) - Function
+ *
+ * @returns: void | Array<number>
+*/
   function levelOrder(node = root, callback){
     let queueArray = [];
     if(node == null) return [];
@@ -149,7 +156,6 @@ return orderArray;
       }
       else{
         let holder =  inOrder(node.left,array);
-        console.log(holder);
         array.push(node.data);
          inOrder(node.right,array);
       }
@@ -244,17 +250,21 @@ const isBalanced = (node = root) =>{
 
   if (node == null) return isBalance;
   let compareHeight;
+
   isBalance = isBalanced(node.left,isBalance);
+  
   if(node.left == null && node.right == null){
      compareHeight = depth(node)+1;
-    if(heightMax-compareHeight >1) {
+
+    if(heightMax-compareHeight >1 || compareHeight - heightMax >1) {
       isBalance = false;
     return isBalance;
     } 
-
   }
+
 if(isBalance != false)
   isBalance = isBalanced(node.right);
+
     return isBalance;
 }
  
@@ -267,5 +277,4 @@ return {getTree,levelOrder, height,depth,isBalanced,rebalance,
    inOrder, preOrder, postOrder,prettyPrint, insertNode,deleteNode}
 }
 
-export default tree;
-
+module.exports = tree;

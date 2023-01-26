@@ -9,4 +9,4 @@ const node = () => {
 }
 
 
-export default node;
+module.exports = node;

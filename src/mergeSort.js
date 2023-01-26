@@ -34,4 +34,4 @@
     return newArray;
   }
 
-export default removeDuplicateSort;
+  module.exports = removeDuplicateSort;
