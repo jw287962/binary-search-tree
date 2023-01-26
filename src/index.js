@@ -46,3 +46,6 @@ console.log(treeNode.inOrder(treeNode.getTree(),[],( x=> x+2)));
 console.log(treeNode.preOrder());
 
 console.log(treeNode.postOrder());
+
+
+console.log(treeNode.height(treeNode.getTree()));

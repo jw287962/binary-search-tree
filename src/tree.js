@@ -142,29 +142,28 @@ return orderArray;
   
   const inOrder = (node = root, array = [], callback) => {
       if(node == null)
-        return;
-    
-      // console.log(node)
+        return null;
+
       if(callback){
         inOrder(node.left,array,callback);
         array.push(callback(node.data));
-      inOrder(node.right,array,callback);
+        inOrder(node.right,array,callback);
       }
       else{
-        inOrder(node.left,array);
+        let holder =  inOrder(node.left,array);
+        console.log(holder);
         array.push(node.data);
-      inOrder(node.right,array);
+         inOrder(node.right,array);
       }
-      // console.log(array);
       return array;
   }
   // inOrder(8, array)
   //   -> inOrder(4, array)
   //       -> inOrder(3, array)
   //           -> inOrder(1, array)
-  //               -> inOrder(0, array) ... 
-  //                   -> inOrder(null, array)
-  //                       null, []
+  //               -> inOrder(0, array) --> return [0]
+  //                   -> inOrder(null, array) --> null
+  //                       
 
 
   const preOrder = (node = root, array = [], callback) => {
@@ -201,9 +200,43 @@ return orderArray;
 
     return array;
   }
+const height = (node = root, array = [1,1]) => {
+ if (node == null) return;
+array[0]++;
+  height(node.left,array)
+if(node.right != null){
+  array[0]++;
+  if(array[1] < array[0]){
+    array[1] = array[0]
+   }
+  array[0]--;
+}
+array[0]--;
+  height(node.right,array);
 
+  if(array[1] < array[0]){
+    array[1] = array[0]
+   }
+   
+return array[1];
 
-return {getTree,levelOrder, inOrder, preOrder, postOrder,prettyPrint, insertNode,deleteNode}
+}
+const depth = () => {
+
+}
+const isBalanced = () =>{
+
+}
+ 
+const rebalance = () =>{
+  let array = inOrder(getTree(),[]);
+    root =  buildTree(array);
+  
+}
+
+return {getTree,levelOrder, height,depth,isBalanced,rebalance,
+   inOrder, preOrder, postOrder,prettyPrint, insertNode,deleteNode}
 }
 
 export default tree;
+
