@@ -3,10 +3,8 @@ import fixedArray from './mergeSort';
 
 
 const tree = (array) => {
-  const processedArray = fixedArray(array);
-  console.log(processedArray);
-  let root = buildTree(processedArray);
-  console.log(root);
+ ;
+  let root = buildTree(fixedArray(array));
 
   function buildTree(array){
     if(array.length === 0) return null;
@@ -142,10 +140,10 @@ return orderArray;
   
   const inOrder = (node = root, array = [], callback) => {
       if(node == null)
-        return null;
+        return array;
 
       if(callback){
-        inOrder(node.left,array,callback);
+      inOrder(node.left,array,callback);
         array.push(callback(node.data));
         inOrder(node.right,array,callback);
       }
@@ -162,7 +160,7 @@ return orderArray;
   //       -> inOrder(3, array)
   //           -> inOrder(1, array)
   //               -> inOrder(0, array) --> return [0]
-  //                   -> inOrder(null, array) --> null
+  //                   -> inOrder(null, array) --> []
   //                       
 
 
@@ -225,9 +223,6 @@ const depth = (nodeLook = root,num = 0,node = root,) => {
   if(node == null) return null;
   if(nodeLook == null) return null;
  
-  console.log(nodeLook.data)
-  console.log(node.data)
-  console.log(num,'count')
   if(node.data == nodeLook.data)
   return num;
   num++;
@@ -235,24 +230,37 @@ const depth = (nodeLook = root,num = 0,node = root,) => {
   
    num =  depth(nodeLook,num,node.left);
   }
- 
-  
   if(nodeLook.data > node.data){
-    
    num =  depth(nodeLook,num,node.right);
   }
 
 return num;
 
 }
-const isBalanced = () =>{
 
+const isBalanced = (node = root) =>{
+  let isBalance = true;
+  let heightMax = height(root);
+
+  if (node == null) return isBalance;
+  let compareHeight;
+  isBalance = isBalanced(node.left,isBalance);
+  if(node.left == null && node.right == null){
+     compareHeight = depth(node)+1;
+    if(heightMax-compareHeight >1) {
+      isBalance = false;
+    return isBalance;
+    } 
+
+  }
+if(isBalance != false)
+  isBalance = isBalanced(node.right);
+    return isBalance;
 }
  
 const rebalance = () =>{
-  let array = inOrder(getTree(),[]);
+  let array = inOrder(getTree());
     root =  buildTree(array);
-  
 }
 
 return {getTree,levelOrder, height,depth,isBalanced,rebalance,

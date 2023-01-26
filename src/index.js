@@ -50,4 +50,13 @@ console.log(treeNode.postOrder());
 
 console.log(treeNode.height(treeNode.getTree()), "Height");
 
-console.log(treeNode.depth(treeNode.getTree().right.left.right.right));
+console.log(treeNode.depth(treeNode.getTree()),"depth");
+
+console.log(treeNode.isBalanced(treeNode.getTree()),"Balance");
+
+if(!treeNode.isBalanced(treeNode.getTree))
+treeNode.rebalance();
+
+treeNode.prettyPrint(treeNode.getTree());
+
+console.log(treeNode.isBalanced(treeNode.getTree()),"Balance");
