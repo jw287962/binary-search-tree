@@ -126,50 +126,57 @@ const tree = (array) => {
 
     while(queueArray.length != 0){
        let sliced = queueArray.splice(0,1);
-       if(callback){
+       if(callback)
         orderArray.push(callback(sliced[0].data));
-       }else{
+       
         orderArray.push(sliced[0].data);
-       }
-      
-
        if(sliced[0].left != null){
         queueArray.push(sliced[0].left); 
       }
       if(sliced[0].right != null){
     queueArray.push(sliced[0].right);
       }
-
     }
 return orderArray;
   }
   
-  const inOrder = (node = root) => {
-    let arrayOrder  = [];
+  const inOrder = (node = root, array = []) => {
       if(node == null){
-        return ;
+        return;
       }
+      inOrder(node.left,array);
+      // console.log(node.data);
+      array.push(node.data);
+      if(node.right != null){  
+        return ((inOrder(node.right,array)));
+      }
+      return array;
+  }
 
-
-inOrder(node.left);
-arrayOrder.push(node.data);
-console.log(arrayOrder)
-
-    if(node.right != null){
-
-      return arrayOrder.concat((inOrder(node.right)));
+  const preOrder = (node = root, array = []) => {
+    if(node == null){
+      return;
     }
-    return arrayOrder.concat(arrayOrder)
+    array.push(node.data);
 
-
-   
+    preOrder(node.left,array);
+    // console.log(node.data);
+    if(node.right != null){  
+      return ((preOrder(node.right,array)));
+    }
+    return array;
   }
+  const  postOrder = (node = root, array = []) => {
+    if(node == null){
+      return;
+    }
 
-  const preOrder = () => {
+    postOrder(node.left,array);
+ 
+      postOrder(node.right,array);
+    array.push(node.data);
 
-  }
-  const  postOrder = () => {
-
+    return array;
   }
 
 
