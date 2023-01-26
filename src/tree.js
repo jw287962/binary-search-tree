@@ -221,7 +221,28 @@ array[0]--;
 return array[1];
 
 }
-const depth = () => {
+const depth = (nodeLook = root,num = 0,node = root,) => {
+  if(node == null) return null;
+  if(nodeLook == null) return null;
+ 
+  console.log(nodeLook.data)
+  console.log(node.data)
+  console.log(num,'count')
+  if(node.data == nodeLook.data)
+  return num;
+  num++;
+  if(nodeLook.data < node.data){
+  
+   num =  depth(nodeLook,num,node.left);
+  }
+ 
+  
+  if(nodeLook.data > node.data){
+    
+   num =  depth(nodeLook,num,node.right);
+  }
+
+return num;
 
 }
 const isBalanced = () =>{

@@ -48,4 +48,6 @@ console.log(treeNode.preOrder());
 console.log(treeNode.postOrder());
 
 
-console.log(treeNode.height(treeNode.getTree()));
+console.log(treeNode.height(treeNode.getTree()), "Height");
+
+console.log(treeNode.depth(treeNode.getTree().right.left.right.right));
