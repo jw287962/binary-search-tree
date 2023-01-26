@@ -35,4 +35,7 @@ console.log("NEW TREE");
 
 treeNode.prettyPrint(treeNode.getTree());
 
-console.log(treeNode.levelOrder());
+
+console.log(treeNode.levelOrder(treeNode.getTree(),(x=> x*2)));
+
+console.log(treeNode.inOrder());

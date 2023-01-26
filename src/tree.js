@@ -103,23 +103,77 @@ const tree = (array) => {
     return currentNode;
   }
   
-  const levelOrder = (queueArray = [root]) =>{
-    let orderArray = [];
-    if(node == null) return [];
-  if(queueArray.length == 0) return orderArray;
+  // const levelOrder = (queueArray = [root]) =>{
+  //   let orderArray = [];
+  //   if(node == null) return [];
+  // if(queueArray.length == 0) return orderArray;
 
-    let sliced = queueArray.splice(0,1);
-      orderArray.push(sliced[0].data);
-      if(sliced[0].left != null){
+  //   let sliced = queueArray.splice(0,1);
+  //     orderArray.push(sliced[0].data);
+  //     if(sliced[0].left != null){
+  //       queueArray.push(sliced[0].left); 
+  //     }
+  //     if(sliced[0].right != null){
+  //   queueArray.push(sliced[0].right);
+  //     }
+  // return orderArray.concat(levelOrder(queueArray));
+  // }
+  function levelOrder(node = root, callback){
+    let queueArray = [];
+    if(node == null) return [];
+    let orderArray = [];
+    queueArray.push(node);
+
+    while(queueArray.length != 0){
+       let sliced = queueArray.splice(0,1);
+       if(callback){
+        orderArray.push(callback(sliced[0].data));
+       }else{
+        orderArray.push(sliced[0].data);
+       }
+      
+
+       if(sliced[0].left != null){
         queueArray.push(sliced[0].left); 
       }
       if(sliced[0].right != null){
     queueArray.push(sliced[0].right);
       }
-  return orderArray.concat(levelOrder(queueArray));
+
+    }
+return orderArray;
   }
   
-return {getTree,levelOrder, prettyPrint, insertNode,deleteNode}
+  const inOrder = (node = root) => {
+    let arrayOrder  = [];
+      if(node == null){
+        return ;
+      }
+
+
+inOrder(node.left);
+arrayOrder.push(node.data);
+console.log(arrayOrder)
+
+    if(node.right != null){
+
+      return arrayOrder.concat((inOrder(node.right)));
+    }
+    return arrayOrder.concat(arrayOrder)
+
+
+   
+  }
+
+  const preOrder = () => {
+
+  }
+  const  postOrder = () => {
+
+  }
+
+
+return {getTree,levelOrder, inOrder, preOrder, postOrder,prettyPrint, insertNode,deleteNode}
 }
 
 export default tree;
