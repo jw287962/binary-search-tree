@@ -128,7 +128,7 @@ const tree = (array) => {
        let sliced = queueArray.splice(0,1);
        if(callback)
         orderArray.push(callback(sliced[0].data));
-       
+       else
         orderArray.push(sliced[0].data);
        if(sliced[0].left != null){
         queueArray.push(sliced[0].left); 
@@ -140,41 +140,64 @@ const tree = (array) => {
 return orderArray;
   }
   
-  const inOrder = (node = root, array = []) => {
-      if(node == null){
+  const inOrder = (node = root, array = [], callback) => {
+      if(node == null)
         return;
+    
+      // console.log(node)
+      if(callback){
+        inOrder(node.left,array,callback);
+        array.push(callback(node.data));
+      inOrder(node.right,array,callback);
       }
-      inOrder(node.left,array);
-      // console.log(node.data);
-      array.push(node.data);
-      if(node.right != null){  
-        return ((inOrder(node.right,array)));
+      else{
+        inOrder(node.left,array);
+        array.push(node.data);
+      inOrder(node.right,array);
       }
+      // console.log(array);
       return array;
   }
+  // inOrder(8, array)
+  //   -> inOrder(4, array)
+  //       -> inOrder(3, array)
+  //           -> inOrder(1, array)
+  //               -> inOrder(0, array) ... 
+  //                   -> inOrder(null, array)
+  //                       null, []
 
-  const preOrder = (node = root, array = []) => {
+
+  const preOrder = (node = root, array = [], callback) => {
     if(node == null){
       return;
     }
+    if(callback){
+      array.push(callback(node.data));
+      preOrder(node.left,array,callback);
+      ((preOrder(node.right,array,callback)));
+    }
+    else{
     array.push(node.data);
-
     preOrder(node.left,array);
-    // console.log(node.data);
-    if(node.right != null){  
-      return ((preOrder(node.right,array)));
+    ((preOrder(node.right,array)));
     }
     return array;
   }
-  const  postOrder = (node = root, array = []) => {
+
+  const  postOrder = (node = root, array = [], callback) => {
     if(node == null){
       return;
     }
-
-    postOrder(node.left,array);
- 
-      postOrder(node.right,array);
-    array.push(node.data);
+    if(callback){
+      postOrder(node.left,array,callback);
+      postOrder(node.right,array,callback);
+      array.push(node.data);
+    }
+ else{
+  postOrder(node.left,array);
+  postOrder(node.right,array);
+  array.push(node.data);
+ }
 
     return array;
   }

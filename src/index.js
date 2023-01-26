@@ -40,7 +40,7 @@ console.log(treeNode.levelOrder(treeNode.getTree()));
 
 
 
-console.log(treeNode.inOrder());
+console.log(treeNode.inOrder(treeNode.getTree(),[],( x=> x+2)));
 
 
 console.log(treeNode.preOrder());
