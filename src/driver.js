@@ -31,12 +31,14 @@ newTree.insertNode(104);
 newTree.insertNode(110);
 
 newTree.prettyPrint(newTree.getTree());
-console.log(newTree.isBalanced());
+console.log(newTree.isBalanced(),"Balance");
 if(!newTree.isBalanced()){
   newTree.rebalance();
 }
-newTree.prettyPrint(newTree.getTree());
+console.log(newTree.isBalanced(),"Balance");
 
+
+newTree.prettyPrint(newTree.getTree());
 console.log(newTree.levelOrder());
 console.log(newTree.inOrder());
 console.log(newTree.preOrder());
