@@ -102,7 +102,24 @@ const tree = (array) => {
     
     return currentNode;
   }
-return {getTree,prettyPrint, insertNode,deleteNode}
+  
+  const levelOrder = (queueArray = [root]) =>{
+    let orderArray = [];
+    if(node == null) return [];
+  if(queueArray.length == 0) return orderArray;
+
+    let sliced = queueArray.splice(0,1);
+      orderArray.push(sliced[0].data);
+      if(sliced[0].left != null){
+        queueArray.push(sliced[0].left); 
+      }
+      if(sliced[0].right != null){
+    queueArray.push(sliced[0].right);
+      }
+  return orderArray.concat(levelOrder(queueArray));
+  }
+  
+return {getTree,levelOrder, prettyPrint, insertNode,deleteNode}
 }
 
 export default tree;

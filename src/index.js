@@ -11,6 +11,11 @@ treeNode.insertNode(10);
 treeNode.insertNode(6);
 treeNode.insertNode(14);
 treeNode.insertNode(0);
+treeNode.insertNode(2);
+treeNode.insertNode(25);
+treeNode.insertNode(36);
+
+
 
 console.log("NEW TREE INSERT");
 
@@ -29,3 +34,5 @@ treeNode.deleteNode();
 console.log("NEW TREE");
 
 treeNode.prettyPrint(treeNode.getTree());
+
+console.log(treeNode.levelOrder());
