@@ -11,11 +11,11 @@ function randomArray(num) {
   return array;
 }
 
-// let array = randomArray(20);
-let array = [
-  0, 9, 11, 20, 26, 33, 36, 42, 46, 51, 64, 65, 67, 72, 74, 80, 88, 92, 93, 101,
-  102, 103, 104, 110,
-];
+let array = randomArray(20);
+// let array = [
+//   0, 9, 11, 20, 26, 33, 36, 42, 46, 51, 64, 65, 67, 72, 74, 80, 88, 92, 93, 101,
+//   102, 103, 104, 110,
+// ];
 
 // array.push(20);
 
