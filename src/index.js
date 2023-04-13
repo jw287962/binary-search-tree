@@ -60,14 +60,3 @@ treeNode.rebalance();
 treeNode.prettyPrint(treeNode.getTree());
 
 console.log(treeNode.isBalanced(treeNode.getTree()),"Balance");
-
-function randomArray(num){
-  let array = [];
-  let i = 0
-  while(i <= num){
-    array.push(Math.random()*100)
-i++;
-  }
-
-  return array;
-}
